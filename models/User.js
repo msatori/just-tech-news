@@ -1,4 +1,4 @@
-const { Model, Datatypes, STRING } = require('sequelize');
+const { Model, Datatypes, Sequelize, } = require('sequelize');
 const sequelize = require('../config/connection');
 
 //create User model
@@ -9,7 +9,7 @@ User.init(
     {
         id: {
             //define id colu,n
-            type: Datatypes.INTEGER,
+            type: Sequelize.INTEGER,
             //make sure input is here
             allowNull: false,
             //instruct that this is the primary key
@@ -20,12 +20,12 @@ User.init(
 
         //define username column
         username: {
-            type: Datatypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         //define email column
        email: {
-            type: Datatypes.STRING, 
+            type: Sequelize.STRING, 
             allowNull: false,
             unique: true,
             validate: {
@@ -34,7 +34,7 @@ User.init(
         },
         //define password column
         password: {
-            type: Datatypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
             validate: {
                 //validate that password is longer than 6 characters
