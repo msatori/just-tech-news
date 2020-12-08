@@ -1,4 +1,3 @@
-const { execArgv } = require('process');
 const { Model, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -21,7 +20,14 @@ Post.init(
                 isUrl: true
             }
         },
-        userId: {
+        post_url: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                isUrl: true
+            }
+        },
+        user_id: {
             type: Sequelize.INTEGER,
             references: {
                 model: 'user',
@@ -33,7 +39,8 @@ Post.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post'
+        modelName: 'post',
+        subbQuery: false
     }
 );
 
