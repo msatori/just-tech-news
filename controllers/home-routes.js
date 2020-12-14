@@ -30,8 +30,10 @@ router.get('/', (req, res) => {
      ]
  })
     .then(dbPostData => {
+        const posts = dbPostData.map(post => post.get({ plain: true }));
+
         //pass single object into the homepage template
-        res.render('homepage', dbPostData[0]);
+        res.render('homepage', {posts});
     })
     .catch(err => {
         console.log(err);
